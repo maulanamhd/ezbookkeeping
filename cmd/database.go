@@ -173,5 +173,21 @@ func updateAllDatabaseTablesStructure(c *core.CliContext) error {
 
 	log.BootInfof(c, "[database.updateAllDatabaseTablesStructure] insights explorer table maintained successfully")
 
+	err = datastore.Container.UserDataStore.SyncStructs(new(models.BudgetTarget))
+
+	if err != nil {
+		return err
+	}
+
+	log.BootInfof(c, "[database.updateAllDatabaseTablesStructure] budget target table maintained successfully")
+
+	err = datastore.Container.UserDataStore.SyncStructs(new(models.Goal))
+
+	if err != nil {
+		return err
+	}
+
+	log.BootInfof(c, "[database.updateAllDatabaseTablesStructure] goal table maintained successfully")
+
 	return nil
 }

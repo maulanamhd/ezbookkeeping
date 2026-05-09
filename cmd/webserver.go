@@ -462,6 +462,19 @@ func startWebServer(c *core.CliContext) error {
 			apiV1Route.POST("/insights/explorers/move.json", bindApi(api.InsightsExplorers.InsightsExplorerMoveHandler))
 			apiV1Route.POST("/insights/explorers/delete.json", bindApi(api.InsightsExplorers.InsightsExplorerDeleteHandler))
 
+			// Budget Targets
+			apiV1Route.GET("/budget/targets.json", bindApi(api.Budget.BudgetTargetsHandler))
+			apiV1Route.POST("/budget/targets/add.json", bindApi(api.Budget.CreateBudgetTargetHandler))
+			apiV1Route.POST("/budget/targets/modify.json", bindApi(api.Budget.UpdateBudgetTargetHandler))
+			apiV1Route.POST("/budget/targets/delete.json", bindApi(api.Budget.DeleteBudgetTargetHandler))
+			apiV1Route.GET("/budget/savings-actuals.json", bindApi(api.Budget.SavingsActualsHandler))
+
+			// Goals
+			apiV1Route.GET("/goals/list.json", bindApi(api.Goal.GoalsHandler))
+			apiV1Route.POST("/goals/add.json", bindApi(api.Goal.CreateGoalHandler))
+			apiV1Route.POST("/goals/modify.json", bindApi(api.Goal.UpdateGoalHandler))
+			apiV1Route.POST("/goals/delete.json", bindApi(api.Goal.DeleteGoalHandler))
+
 			// Large Language Models
 			if config.ReceiptImageRecognitionLLMConfig != nil && config.ReceiptImageRecognitionLLMConfig.LLMProvider != "" {
 				if config.TransactionFromAIImageRecognition {
